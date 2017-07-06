@@ -13,19 +13,20 @@
   </thead>
 
   <tbody>
+    <%= form_tag('/cart') %>
     <% @products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td><%= product.image %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= select_tag "quantity", options_for_select(0..12) %>
+        <input type="hidden" value="<%= product.id %>" name="product_id" id="product<%= product.id %>">
+        <input type="hidden" value="1" name="order_id">
+          <%= submit_tag "Add Item", class: :add %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Product', new_product_path %>

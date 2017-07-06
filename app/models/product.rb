@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
-  has_many :products_orders
-  has_many :orders, through: :products_orders
+  has_many :carts
+  has_many :orders, through: :carts
 end

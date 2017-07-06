@@ -25,7 +25,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    if @order.date.nil?
+      @order.date = Date.today
+    end
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -35,6 +37,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+    session[:order_id] = @order.id
   end
 
   # PATCH/PUT /orders/1
@@ -69,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:date)
+      params.require(:order).permit(:date, :user_id)
     end
 end
