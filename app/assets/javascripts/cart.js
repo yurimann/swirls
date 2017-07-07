@@ -12,9 +12,10 @@ $(document).on("ready", function(){
       url: "/add",
       method: "POST",
       dataType: "JSON",
-      data: {"order_id": 1, "product_id": item, "quantity": quantity}
+      data: {"product_id": item, "quantity": quantity}
     }).done(function(e){
       console.log(e);
+      location.reload()
     }).fail(function(e){
       console.log(e);
     })

@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <div class="counter">
+      <%= link_to "Go to Cart", cart_index_path %>
+      <% if !session[:temp_cart].nil? %>
+        <p>There are <%= session[:temp_cart].length %> items in your cart</p>
+      <% else %>
+        <p>There are no items in your cart</p>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
   <%= console %>

@@ -5,6 +5,22 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @carts = session[:temp_cart]
+    y = 0
+    if @carts != nil
+      until y >= @carts.length do
+        x = 0
+        until x >= @carts.length do
+          if @carts[y]["product_id"] == @carts[x]["product_id"] && y != x
+            @carts[y]["quantity"] += @carts[x]["quantity"]
+            @carts.delete_at(x)
+          end
+          x += 1
+        end
+        y += 1
+      end
+    end
+    session[:temp_cart] = @carts
   end
 
   # GET /products/1

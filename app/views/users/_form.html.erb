@@ -1,10 +1,10 @@
-<%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -49,6 +49,21 @@
   <div class="field">
     <%= f.label :delivery_apartment_number %>
     <%= f.text_field :delivery_apartment_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :delivery_street %>
+    <%= f.text_field :delivery_street %>
+  </div>
+
+  <div class="field">
+    <%= f.label :delivery_city %>
+    <%= f.text_field :delivery_city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :delivery_postal_code %>
+    <%= f.text_field :delivery_postal_code %>
   </div>
 
   <div class="actions">

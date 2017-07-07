@@ -1,6 +1,7 @@
 class CartController < ApplicationController
-  @@cart = []
+
   def index
+    @user = User.new
     @carts = session[:temp_cart]
   end
 
@@ -60,7 +61,6 @@ class CartController < ApplicationController
       end
       session[:temp_cart] <<  @cart
     end
-
   end
 
   def clear_cart
