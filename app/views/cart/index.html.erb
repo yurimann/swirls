@@ -1,6 +1,9 @@
-
-
-<% @carts.each do |cart| %>
-  <%= cart["quantity"] %>
-  <%= Product.find(cart["product_id"]).name %></br>
+<% if @carts.nil? %>
+  <p>There are no items in your cart</p>
+<% else %>
+  <% @carts.each do |cart| %>
+    <%= cart["quantity"] %>
+    <%= Product.find(cart["product_id"]).name %></br>
+  <% end %>
+  <button class="clear">Clear</button>
 <% end %>

@@ -19,4 +19,15 @@ $(document).on("ready", function(){
       console.log(e);
     })
   });
+
+  $(".clear").on("click", function(){
+    $.ajax({
+      url: "/clear",
+      method: "POST",
+      dataType: "JSON"
+    }).done(function(e){
+      console.log(e);
+      location.reload();
+    })
+  })
 })

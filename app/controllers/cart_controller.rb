@@ -55,7 +55,19 @@ class CartController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @cart }
-      session[:temp_cart] << @cart
+      if session[:temp_cart].nil?
+        session[:temp_cart] = []
+      end
+      session[:temp_cart] <<  @cart
+    end
+
+  end
+
+  def clear_cart
+    respond_to do |format|
+      format.html
+      format.json { render json: @cart }
+      session[:temp_cart] = nil
     end
   end
 

@@ -41,6 +41,6 @@ User.create(
   delivery_city: "Etobicoke",
   delivery_contact: "Ronnie",
   delivery_phone: "647-636-5163",
-  delivery_postal_code: "M9C 1G6"
+  delivery_postal_code: "M9C 1G6",
   notes: "leave at front door"
 )
