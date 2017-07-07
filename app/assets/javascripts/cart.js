@@ -9,7 +9,7 @@ $(document).on("ready", function(){
     console.log(item);
 
     $.ajax({
-      url: "/cart",
+      url: "/add",
       method: "POST",
       dataType: "JSON",
       data: {"order_id": 1, "product_id": item, "quantity": quantity}

@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
     else
       Order.find(session[:order_id])
     end
-
   end
 
 end

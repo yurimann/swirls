@@ -1,6 +1,7 @@
 class CartController < ApplicationController
+  @@cart = []
   def index
-    @carts = Cart.all
+    @carts = session[:temp_cart]
   end
 
   def show
@@ -22,6 +23,7 @@ class CartController < ApplicationController
         format.html { render :new }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
+
     end
 
   end
@@ -36,7 +38,7 @@ class CartController < ApplicationController
     respond_to do |format|
       if @cart.update(cart_params)
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-        format.json { render root_path, status: :ok, location: @products}
+        format.json { render json: @products}
       else
         format.html { render :edit }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
@@ -48,8 +50,20 @@ class CartController < ApplicationController
   def destroy
   end
 
+  def add_to_cart
+    @cart = Cart.new(cart_params)
+    respond_to do |format|
+      format.html
+      format.json { render json: @cart }
+      session[:temp_cart] << @cart
+    end
+  end
+
   private
+
+
   def cart_params
     params.permit(:order_id, :product_id, :quantity)
   end
+
 end

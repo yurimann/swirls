@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  post '/add', to: 'cart#add_to_cart', as: "add"
   resources :cart
   resources :users
   resources :orders
