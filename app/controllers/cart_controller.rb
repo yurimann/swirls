@@ -3,6 +3,7 @@ class CartController < ApplicationController
   def index
     @user = User.new
     @carts = session[:temp_cart]
+    @cart = Cart.last
   end
 
   def show
@@ -71,8 +72,45 @@ class CartController < ApplicationController
     end
   end
 
-  private
+  def remove_from_cart
+    num = params[:id]
+    respond_to do |format|
+      format.html
+      format.json { render json: @cart }
+      @carts = session[:temp_cart]
+      y = 0
+      if @carts != nil
+        until y >= @carts.length do
+          if @carts[y]["product_id"] == num.to_i
+            @carts.delete_at(y)
+          end
+          y += 1
+        end
+      end
+      session[:temp_cart] = @carts
+    end
+  end
 
+  def check_if_taxable
+    respond_to do |format|
+      format.html
+      format.json { render json: @cart }
+      non_taxable = 6
+      tax_rate = 0.13
+      if !self.nil?
+        total = 0
+        self.each do |x|
+          total += x[:quantity]
+        end
+      end
+      if total < non_taxable
+        total = total + (total * tax_rate)
+      end
+      total
+    end
+  end
+
+  private
 
   def cart_params
     params.permit(:order_id, :product_id, :quantity)

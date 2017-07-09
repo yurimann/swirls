@@ -3,8 +3,14 @@
 <% else %>
   <% @carts.each do |cart| %>
     <%= cart["quantity"] %>
-    <%= Product.find(cart["product_id"]).name %></br>
+    <%= Product.find(cart["product_id"]).name %>
+    <%= Product.find(cart["product_id"]).price %>
+    <% x = Product.find(cart["product_id"]).price * cart["quantity"] %>
+    <%= number_to_currency(x) %>
+    <button class="remove" id="<%= cart["product_id"].to_i %>">Remove item</button>
+  </br>
   <% end %>
-  <button class="clear">Clear</button>
+  <button class="clear">Empty Cart</button>
+  <%= number_to_currency(Cart.check_if_taxable(@carts)) %>
   <%= render 'users/form' %>
 <% end %>

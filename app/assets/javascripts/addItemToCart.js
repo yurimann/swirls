@@ -1,5 +1,6 @@
 $(document).on("ready", function(){
   $(".add").on("click", function(e){
+    e.stopPropagation();
     e.preventDefault();
     var temp = $(this).siblings();
     var cost = temp.attr("value");

@@ -22,6 +22,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  
+  <div class="field">
     <%= f.label :apartment_number %>
     <%= f.text_field :apartment_number %>
   </div>
@@ -41,10 +51,6 @@
     <%= f.text_field :postal_code %>
   </div>
 
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
 
   <div class="field">
     <%= f.label :delivery_apartment_number %>
